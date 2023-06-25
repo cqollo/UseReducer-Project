@@ -23,4 +23,8 @@ export const data = [
     id: 6,
     name: "mama",
   },
+  {
+    id: 7,
+    name: "daddy",
+  },
 ];
