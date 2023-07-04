@@ -47,27 +47,41 @@ function App() {
       name: "username",
       type: "text",
       placeholder: "username",
-      label: "username",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      errormessage: "username cannot be less that four characters",
+      required: true,
+      label: "Username",
     },
     {
       id: 2,
       name: "Email",
       type: "email",
       placeholder: "Email",
+      pattern: "",
+      errormessage: "Email must be in the correct format",
+      required: true,
       label: "Email",
     },
     {
       id: 3,
-      name: "Password",
-      type: "Password",
+      name: "password",
+      type: "password",
       placeholder: "Password",
+      pattern:
+        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|){8,16}$",
+      errormessage:
+        "Password must be 8-16 characters and contain at least a special character, an uppercase and a number",
+      required: true,
       label: "Password",
     },
     {
       id: 4,
       name: "confirmpassword",
-      type: "Password",
+      type: "password",
       placeholder: "Confirm Password",
+      pattern: values.password,
+      errormessage: "Passwords do not match!",
+      required: true,
       label: "Confirm Password",
     },
   ];
@@ -75,11 +89,11 @@ function App() {
     e.preventDefault();
   };
 
-  const changeValues = (e) => {
+  const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  console.log(values)
+  console.log(values);
 
   return (
     <div className="app">
@@ -89,7 +103,7 @@ function App() {
             key={input.id}
             {...input}
             value={values[input.name]}
-            onChange={changeValues}
+            onChange={onChange}
           />
         ))}
         <button>Submit</button>
