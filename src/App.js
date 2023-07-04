@@ -46,7 +46,7 @@ function App() {
       id: 1,
       name: "username",
       type: "text",
-      placeholder: "username",
+      placeholder: "Username",
       pattern: "^[A-Za-z0-9]{3,16}$",
       errormessage: "username cannot be less that four characters",
       required: true,
@@ -57,7 +57,6 @@ function App() {
       name: "Email",
       type: "email",
       placeholder: "Email",
-      pattern: "",
       errormessage: "Email must be in the correct format",
       required: true,
       label: "Email",
@@ -67,8 +66,7 @@ function App() {
       name: "password",
       type: "password",
       placeholder: "Password",
-      pattern:
-        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|){8,16}$",
+      pattern: `^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|){8,16}$`,
       errormessage:
         "Password must be 8-16 characters and contain at least a special character, an uppercase and a number",
       required: true,
@@ -98,12 +96,14 @@ function App() {
   return (
     <div className="app">
       <form onSubmit={handleSubmit}>
+      <h2>Register</h2>
         {inputs.map((input) => (
           <Inputs
             key={input.id}
             {...input}
             value={values[input.name]}
             onChange={onChange}
+            required
           />
         ))}
         <button>Submit</button>
